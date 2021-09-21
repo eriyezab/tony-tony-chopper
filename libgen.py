@@ -7,23 +7,23 @@ from typing import Any
 LIBGEN_LINK = "http://libgen.rs/"
 QUERY_PREFIX = "search.php?req="
 QUERY_SUFFIX = "&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def"
-TABLE_COLS = [
-        "ID",
-        "Authors",
-        "Title",
-        "Publisher",
-        "Year",
-        "Pages",
-        "Language",
-        "Size",
-        "Extension",
-        "Mirror 1",
-        "Mirror 2",
-        "Mirror 3",
-        "Mirror 4",
-        "Mirror 5",
-        "Edit",
-        ]
+TABLE_COLS = {
+        "ID": 0,
+        "Authors": 1,
+        "Title": 2,
+        "Publisher": 3,
+        "Year": 4,
+        "Pages": 5,
+        "Language": 6,
+        "Size": 7,
+        "Extension": 8,
+        "Mirror 1": 9,
+        "Mirror 2": 10,
+        "Mirror 3": 11,
+        "Mirror 4": 12,
+        "Mirror 5": 13,
+        "Edit": 14,
+        }
 
 
 class Libgen:
@@ -82,8 +82,6 @@ class Libgen:
         for row in rows[1:]:
             cells = row.findChildren("td")
             valid = True
-            for cell in cells:
-                print(cell)
-            break
+            print(cells[TABLE_COLS["Authors"]].text)
         return filtered_rows
         
